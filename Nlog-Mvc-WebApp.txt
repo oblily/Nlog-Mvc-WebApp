@@ -1,0 +1,22 @@
+1: Install the two as below using NuGet
+	Nlog
+	Nlog.config
+2: Add targets and rules to Nlog.config as example of below
+	<!-- targets -->
+	<target name="file"
+                xsi:type="File"
+                layout="${longdate} ${logger} ${message}"
+                fileName="${basedir}/App_Data/logs/logfile.txt"
+                keepFileOpen="false"
+                encoding="iso-8859-2" />
+	<!-- rules -->
+	<logger name="*"
+                minlevel="Debug"
+                writeTo="file" />
+3: Add logging to logic source as example of below
+	NLog.Logger logger = NLog.LogManager.GetCurrentClassLogger();
+    logger.Debug("Debug Logging test");
+    logger.Info("Info Logging test");
+    logger.Warn("Warn Logging test");
+    logger.Error("Error Logging test");
+    logger.Fatal("Fatal Logging test");
